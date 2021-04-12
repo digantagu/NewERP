@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %} Exam Creation | {% endblock title %}
+
+{% block body %}
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Exam Creation Form</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Exam Creation Form</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Exam Details</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label for="ses">Session</label>
+                                            <select name="ses" class="custom-select form-control-border" id="ses">
+                                                <option value="">Select</option>
+                                                <option>2021-2022</option>
+                                                <option>2022-2023</option>
+                                                <option>2023-2024</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="type">Exam Type</label>
+                                            <select name="type" class="custom-select form-control-border" id="type">
+                                                <option value="">Select</option>
+                                                <option>PT I</option>
+                                                <option>TERM I</option>
+                                                <option>PT II</option>
+                                                <option>TERM II</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="cname">Class</label>
+                                            <select name="cname" class="custom-select form-control-border" id="cname">
+                                                <option value="">Select</option>
+                                                <option value="I">I</option>
+                                                <option value="II">II</option>
+                                                <option value="III">III</option>
+                                                <option value="IV">IV</option>
+                                                <option value="V">V</option>
+                                                <option value="VI">VI</option>
+                                                <option value="VII">VII</option>
+                                                <option value="VIII">VIII</option>
+                                                <option value="IX">IX</option>
+                                                <option value="X">X</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Select Subjects</label>
+                                        <select id="subject" name="subject" multiple class="custom-select">
+                                            <option value="Assamese">Assamese</option>
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="English_I">English_I</option>
+                                            <option value="English_II">English_II</option>
+                                            <option value="EVS">EVS</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                            <option value="Science">Science</option>
+                                            <option value="Social Science">Social Science</option>
+                                            <option value="Hindi">Hindi</option>
+                                            <option value="SUPW">SUPW</option>
+                                            <option value="Moral Science">Moral Science</option>
+                                            <option value="Drawing">Drawing</option>
+                                            <option value="General Knowledge">General Knowledge</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </section>
+    </form>
+</div>
+
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}

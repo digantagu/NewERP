@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %} Filter Report | {% endblock title %}
+
+{% block body %}
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post" action="/reportcard">
+        {% csrf_token %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Select Student</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Filter Report</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Filter</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label for="ses">Session</label>
+                                            <select name="ses" class="custom-select form-control-border" id="ses">
+                                                <option value="">Select</option>
+                                                <option value="2021-22">2021-22</option>
+                                                <option value="2022-23">2022-23</option>
+                                                <option value="2023-24">2023-24</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="studentname"> Student Name</label>
+                                            <select name="studentname" class="custom-select form-control-border"
+                                                    id="studentname">
+                                                <option>Select Student</option>
+                                                {% for results in var2 %}
+                                                <option>{{results.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="type">Exam Type</label>
+                                            <select class="custom-select form-control-border" id="type" name="type">
+                                                <option value="">Select</option>
+                                                <option value="PT I">PT I</option>
+                                                <option value="Term I">Term I</option>
+                                                <option value="PT II">PT II</option>
+                                                <option value="Term II">Term II</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+        </section>
+    </form>
+</div>
+
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}

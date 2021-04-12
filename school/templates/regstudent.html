@@ -1,0 +1,353 @@
+{% extends 'base.html' %}
+
+{% block title %} Admission | {% endblock title %}
+
+{% block body %}
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Admission Form</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Admission Form</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Basic Details</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="fname">Full Name</label>
+                                    <input name="fname" type="text" class="form-control" id="fname"
+                                           placeholder="Enter Full name"
+                                           required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <label for="nationality">Nationality</label>
+                                        <input name="nationality" type="text" class="form-control" id="nationality"
+                                               placeholder="Nationality" required>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mtongue">Mother Tongue</label>
+                                            <input name="mtongue" type="text" class="form-control" id="mtongue"
+                                                   placeholder="Enter mother tongue" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select name="gender" class="custom-select form-control-border" id="gender">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="caste">Caste</label>
+                                            <select name="caste" class="custom-select form-control-border" id="caste">
+                                                <option>General</option>
+                                                <option>OBC</option>
+                                                <option>SC</option>
+                                                <option>ST</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="mail">Email address</label>
+                                            <input name="mail" type="email" class="form-control" id="mail"
+                                                   placeholder="Enter email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="dob">Date of Birth</label>
+                                            <input name="dob" type="date" class="form-control" id="dob" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Upload Documents</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="img">Photo</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input name="img" type="file" class="custom-file-input" id="img">
+                                            <label class="custom-file-label" for="birth">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <label for="birth">Birth Certificate</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input name="birth" type="file" class="custom-file-input" id="birth">
+                                            <label class="custom-file-label" for="birth">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <label for="cs">Caste Certificate</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input name="cs" type="file" class="custom-file-input" id="cs">
+                                            <label class="custom-file-label" for="cs">Choose file</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Upload</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- Input addon -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Previous Qualification Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="school">School Name</label>
+                                            <input name="school" type="text" class="form-control" id="school">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="sad">School Address</label>
+                                            <input name="sad" type="text" class="form-control" id="sad">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="qua">Qualification</label>
+                                            <input name="qua" type="text" class="form-control" id="qua">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="birth">Upload previous marksheet/certificate</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input name="pre" type="file" class="custom-file-input" id="pre">
+                                                <label class="custom-file-label" for="cs">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
+                        <!-- Form Element sizes -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Father Details</h3>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <label for="father">Full Name</label>
+                                        <input name="father" type="text" class="form-control" id="father"
+                                               placeholder="Enter Full name" required>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="fmail">Email address</label>
+                                            <input name="fmail" type="email" class="form-control" id="fmail"
+                                                   placeholder="Enter email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phn">Phone No</label>
+                                            <input name="phn" type="text" class="form-control" id="phn"
+                                                   placeholder="Enter Phone No" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="job">Occupation</label>
+                                            <input name="job" type="text" class="form-control" id="job"
+                                                   placeholder="Enter Occupation" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <!-- general form elements disabled -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h3 class="card-title">Mother Details</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <label for="mother">Full Name</label>
+                                        <input name="mother" type="text" class="form-control" id="mother"
+                                               placeholder="Enter Full name" required>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="momail">Email address</label>
+                                            <input name="momail" type="email" class="form-control" id="momail"
+                                                   placeholder="Enter email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phone">Phone No</label>
+                                            <input name="phone" type="text" class="form-control" id="phone"
+                                                   placeholder="Enter Phone No" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="occ">Occupation</label>
+                                            <input name="occ" type="text" class="form-control" id="occ"
+                                                   placeholder="Enter Occupation" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                        <!-- general form elements disabled -->
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title">Communication Address</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="hn">House/Street</label>
+                                            <input name="hn" type="text" class="form-control" id="hn"
+                                                   placeholder="Enter House No/Street Name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="vill">Village/Town</label>
+                                            <input name="vill" type="text" class="form-control" id="vill"
+                                                   placeholder="Enter Village/Town" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="po">Post Office</label>
+                                            <input name="po" type="text" class="form-control" id="po"
+                                                   placeholder="Enter Post Office" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="dist">District</label>
+                                            <input name="dist" type="text" class="form-control" id="dist"
+                                                   placeholder="Enter District" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            <input name="state" type="text" class="form-control" id="state"
+                                                   placeholder="Enter State" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="pin">Pin Code</label>
+                                            <input name="pin" type="text" class="form-control" id="pin"
+                                                   placeholder="Enter PIN" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!--/.col (right) -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+
+            <div class="card-footer">
+                <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </section>
+        <!-- /.content -->
+    </form>
+
+</div>
+
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}

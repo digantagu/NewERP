@@ -1,0 +1,8 @@
+from django.contrib import admin
+
+from .models import Student, Enroll, Examination, Savemarks
+
+admin.site.register(Student)
+admin.site.register(Enroll)
+admin.site.register(Examination)
+admin.site.register(Savemarks)

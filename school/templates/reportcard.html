@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}Report Card | {% endblock title %}
+
+{% block body %}
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Individual Report Card</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Report Card</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Report Card</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div id="photo" style="text-align: left">
+                                        <img alt="" height="60" src="/static/logo_black.png"
+                                             style="vertical-align:middle">
+                                        <span style="vertical-align:middle"><b>St. Joseph High School</b></span>
+                                    </div>
+                                    <table class="table table-bordered">
+                                        <thead >
+                                        <tr>
+                                            <th scope="col">Roll</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Class</th>
+                                            <th scope="col">Section</th>
+                                            <th scope="col">Exam</th>
+                                            <th scope="col">Session</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            {% for i in sname|slice:":1" %}
+                                            <th scope="row">{{i.rollnumber}}</th>
+                                            <td>{{i.studentname}}</td>
+                                            <td>{{i.classname}}</td>
+                                            <td>{{i.sectionname}}</td>
+                                            <td>{{i.type}}</td>
+                                            <td>{{i.ses}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                                    <table class="table table-bordered ">
+                                        <thead >
+                                        <col>
+                                        <colgroup span="2"></colgroup>
+                                        <colgroup span="2"></colgroup>
+                                        <tr>
+                                            <td rowspan="2"></td>
+                                        </tr>
+                                        <tr>{% for record in sublist %}
+                                            <th>{{record}}</th>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Total Marks -></th>
+                                            {% for record in sname %}
+                                            <td>100</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Marks Obtained -></th>
+                                            {% for record in sname %}
+                                            <td>{{record.obtained}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">20%(PT) -></th>
+                                            {% for record in per %}
+                                            <td>{{record.percentage}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Subject Enrichment -></th>
+                                            {% for record in sname %}
+                                            <td>{{record.sub_en}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Notebook -></th>
+                                            {% for record in sname %}
+                                            <td>{{record.notebook}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Subject Total -></th>
+                                            {% for record in testy %}
+                                            <td>{{record}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Grade -></th>
+                                            {% for record in grade %}
+                                            <td>{{record}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Grand Total(Core Subjects) -></th>
+                                            <td>{{ mysum }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary" onclick="window.print()">Print</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}

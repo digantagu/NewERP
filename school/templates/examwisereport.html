@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %} Exam Wise Report | {% endblock title %}
+
+{% block body %}
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Select Exam ID</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Exam Wise Report</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Exam Wise Report</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label for="exam_id">Exam ID</label>
+                                            <select name="exam_id" class="custom-select form-control-border"
+                                                    id="exam_id">
+                                                <option value="">Select</option>
+                                                {% for results in exam %}
+                                                <option>{{results.exam_id}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Select Section</label>
+                                            <select name="sectionname" class="custom-select form-control-border"
+                                                    id="sectionname">
+                                                <option value="">Select Section</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </section>
+    </form>
+</div>
+
+<!-- ./wrapper -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}
