@@ -1,4 +1,4 @@
-#!/home/rtps/PycharmProjects/NewERP/venv/bin/python
+#!/home/diganta/PycharmProjects/NewERP/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
