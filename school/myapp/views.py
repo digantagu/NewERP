@@ -5,11 +5,8 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Student, Enroll, Examination, Savemarks
-from tablib import Dataset
-from .resources import BulkStudent
+from .models import Student, Enroll, Examination, Savemarks, Docs
 import xlrd
-import os, sys
 from django.core.files.storage import FileSystemStorage
 
 
@@ -91,6 +88,11 @@ def examcreate(request):
 
 
 @login_required(login_url="/")
+def regemployee(request):
+    return render(request, 'regemployee.html')
+
+
+@login_required(login_url="/")
 def regstudent(request):
     global name, student1
     if request.method == "POST":
@@ -119,11 +121,10 @@ def regstudent(request):
         state = request.POST.get('state')
         pin = request.POST.get('pin')
 
-        '''
         img = request.FILES.get('img')
-        birthdoc = request.FILES.get('bdoc')
-        castedoc = request.FILES.get('cdoc')
-        marksheetdoc = request.FILES.get('mdoc')
+        birthdoc = request.FILES.get('birth')
+        castedoc = request.FILES.get('cs')
+        marksheetdoc = request.FILES.get('pre')
 
         fs = FileSystemStorage()
         fs.save(img.name, img)
@@ -136,7 +137,9 @@ def regstudent(request):
         castedoc = fs.url(castedoc)
         marksheetdoc = fs.url(marksheetdoc)
 
-        doc1 = Docs(name=name, img=img, birthdoc=birthdoc, castedoc=castedoc, marksheetdoc=marksheetdoc)'''
+        doc1 = Docs(name=name, img=img, birthdoc=birthdoc, castedoc=castedoc, marksheetdoc=marksheetdoc)
+
+        doc1.save()
 
         student1 = Student(name=name, nationality=nationality, mtongue=mtongue, gender=gender, caste=caste, mail=mail,
                            dob=dob, school=school, sad=sad, qua=qua, father=father, fmail=fmail, phn=phn, job=job,
@@ -147,6 +150,61 @@ def regstudent(request):
         return redirect('/enroll')
 
     return render(request, 'regstudent.html')
+
+
+@login_required(login_url="/")
+def bulkadmission(request):
+    data = []
+    if request.method == "POST":
+        cname = request.POST.get('cname')
+        section = request.POST.get('section')
+        adm = request.FILES.get('adm')
+
+        fs = FileSystemStorage()
+        fs.save(adm.name, adm)
+        path = fs.url(adm)
+
+        newpath = '/home/diganta/PycharmProjects/NewERP/school' + path
+
+        wb = xlrd.open_workbook(newpath)
+        sheet = wb.sheet_by_index(0)
+
+        sheet.cell_value(0, 0)
+
+        for i in range(sheet.nrows):
+            print(sheet.row_values(i, 0))
+
+
+
+        return redirect('/bulkdata',{'data':data})
+
+        '''
+        bulk_adm = BulkStudent()
+
+        dataset = Dataset()
+
+        adm = request.FILES.get('adm')
+
+        fs = FileSystemStorage()
+        fs.save(adm.name, adm)
+        burl = fs.url(adm)
+
+
+        print(adm)
+
+        imported_data = dataset.load(adm.read())
+        result = bulk_adm.import_data(dataset, dry_run=True)  # Test the data import
+
+        if not result.has_errors():
+            bulk_adm.import_data(dataset, dry_run=False)  # Actually import now
+
+        '''
+
+    return render(request, 'bulkadmission.html')
+
+@login_required(login_url="/")
+def bulkdata(request):
+    return render(request, 'bulkdata.html')
 
 
 @login_required(login_url="/")
@@ -417,54 +475,6 @@ def examwisereport(request):
             return render(request, 'examwisereport.html', {'exam': input})
 
     return render(request, 'examwisereport.html', {'exam': input})
-
-
-@login_required(login_url="/")
-def bulkadmission(request):
-    if request.method == "POST":
-        cname = request.POST.get('cname')
-        section = request.POST.get('section')
-        adm = request.FILES.get('adm')
-
-        fs = FileSystemStorage()
-        fs.save(adm.name, adm)
-        path = fs.url(adm)
-
-        newpath = '/home/rtps/PycharmProjects/NewERP/school' + path
-        print(newpath)
-
-        wb = xlrd.open_workbook(newpath)
-        sheet = wb.sheet_by_index(0)
-
-        sheet.cell_value(0, 0)
-
-        for i in range(sheet.nrows):
-            print(sheet.row_values(i, 0))
-
-
-        '''
-        bulk_adm = BulkStudent()
-
-        dataset = Dataset()
-
-        adm = request.FILES.get('adm')
-        
-        fs = FileSystemStorage()
-        fs.save(adm.name, adm)
-        burl = fs.url(adm)
-       
-
-        print(adm)
-
-        imported_data = dataset.load(adm.read())
-        result = bulk_adm.import_data(dataset, dry_run=True)  # Test the data import
-
-        if not result.has_errors():
-            bulk_adm.import_data(dataset, dry_run=False)  # Actually import now
-            
-            '''
-
-    return render(request, 'bulkadmission.html')
 
 
 @login_required(login_url="/")

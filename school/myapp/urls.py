@@ -9,6 +9,7 @@ urlpatterns = [
                   path('signup', views.signup, name='signup'),
                   path('start', views.start, name='start'),
                   path('regstudent', views.regstudent, name='regstudent'),
+                  path('regemployee', views.regemployee, name='regemployee'),
                   path('studentlist', views.studentlist, name='studentlist'),
                   path('enroll', views.enroll, name='enroll'),
                   path('studentdir', views.studentdir, name='studentdir'),
@@ -22,5 +23,6 @@ urlpatterns = [
                   path('reportcard', views.reportcard, name='reportcard'),
                   path('examwisereport', views.examwisereport, name='examwisereport'),
                   path('bulkadmission', views.bulkadmission, name='bulkadmission'),
+                  path('bulkdata', views.bulkdata, name='bulkdata'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

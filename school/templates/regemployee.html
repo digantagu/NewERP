@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Admission | {% endblock title %}
+{% block title %} Registration | {% endblock title %}
 
 {% block body %}
 <div class="content-wrapper">
@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Admission Form</h1>
+                        <h1>Employee Registration Form</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/start">Home</a></li>
-                            <li class="breadcrumb-item active">Admission Form</li>
+                            <li class="breadcrumb-item active">Registration Form</li>
                         </ol>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Basic Details</h3>
+                                <h3 class="card-title">Personal Details</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -56,6 +56,20 @@
                                             <label for="mtongue">Mother Tongue</label>
                                             <input name="mtongue" type="text" class="form-control" id="mtongue"
                                                    placeholder="Enter mother tongue" required>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="pan">PAN Card Details</label>
+                                            <input name="pan" type="text" class="form-control" id="pan"
+                                                   placeholder="Enter PAN card number" required>
+                                        </div>
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="aadhaar">Aadhaar Card Details</label>
+                                            <input name="aadhaar" type="text" class="form-control" id="aadhaar"
+                                                   placeholder="Enter Aadhaar card number" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -101,33 +115,16 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Upload Documents</h3>
+                                <h3 class="card-title">Upload Photo</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
                                 <div class="form-group">
                                     <label for="img">Photo</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input name="img" type="file" class="custom-file-input" id="img">
                                             <label class="custom-file-label" for="img">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <label for="birth">Birth Certificate</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input name="birth" type="file" class="custom-file-input" id="birth">
-                                            <label class="custom-file-label" for="birth">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <label for="cs">Caste Certificate</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input name="cs" type="file" class="custom-file-input" id="cs">
-                                            <label class="custom-file-label" for="cs">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
@@ -139,19 +136,19 @@
                         <!-- Input addon -->
                         <div class="card card-info">
                             <div class="card-header">
-                                <h3 class="card-title">Previous Qualification Details</h3>
+                                <h3 class="card-title">Qualification & Experience Details</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="school">School Name</label>
+                                            <label for="school">Last worked Organisation Name</label>
                                             <input name="school" type="text" class="form-control" id="school">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="sad">School Address</label>
+                                            <label for="sad">Organisation Address</label>
                                             <input name="sad" type="text" class="form-control" id="sad">
                                         </div>
                                     </div>
@@ -162,12 +159,9 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="birth">Upload previous marksheet/certificate</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input name="pre" type="file" class="custom-file-input" id="pre">
-                                                <label class="custom-file-label" for="pre">Choose file</label>
-                                            </div>
+                                        <div class="form-group">
+                                            <label for="qua">Experience in Years</label>
+                                            <input name="exp" type="text" class="form-control" id="exp">
                                         </div>
                                     </div>
                                 </div>
@@ -181,38 +175,23 @@
                         <!-- Form Element sizes -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Father Details</h3>
+                                <h3 class="card-title">Employee Details</h3>
                             </div>
                             <div class="card-body">
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
-                                        <label for="father">Full Name</label>
+                                        <label for="father">Designation</label>
                                         <input name="father" type="text" class="form-control" id="father"
                                                placeholder="Enter Full name" required>
 
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="fmail">Email address</label>
+                                            <label for="fmail">Joining Date</label>
                                             <input name="fmail" type="email" class="form-control" id="fmail"
                                                    placeholder="Enter email" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="phn">Phone No</label>
-                                            <input name="phn" type="text" class="form-control" id="phn"
-                                                   placeholder="Enter Phone No" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="job">Occupation</label>
-                                            <input name="job" type="text" class="form-control" id="job"
-                                                   placeholder="Enter Occupation" required>
                                         </div>
                                     </div>
                                 </div>
@@ -223,37 +202,37 @@
                         <!-- general form elements disabled -->
                         <div class="card card-warning">
                             <div class="card-header">
-                                <h3 class="card-title">Mother Details</h3>
+                                <h3 class="card-title">Account Details</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
-                                        <label for="mother">Full Name</label>
+                                        <label for="mother">Bank Name</label>
                                         <input name="mother" type="text" class="form-control" id="mother"
-                                               placeholder="Enter Full name" required>
+                                               placeholder="Enter Bank name" required>
 
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="momail">Email address</label>
+                                            <label for="momail">IFSC Code</label>
                                             <input name="momail" type="email" class="form-control" id="momail"
-                                                   placeholder="Enter email" required>
+                                                   placeholder="Enter IFSC" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="phone">Phone No</label>
+                                            <label for="phone">Account Holder Name</label>
                                             <input name="phone" type="text" class="form-control" id="phone"
-                                                   placeholder="Enter Phone No" required>
+                                                   placeholder="Enter account holder name" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label for="occ">Occupation</label>
+                                            <label for="occ">Branch Name</label>
                                             <input name="occ" type="text" class="form-control" id="occ"
-                                                   placeholder="Enter Occupation" required>
+                                                   placeholder="Enter Branch" required>
                                         </div>
                                     </div>
                                 </div>

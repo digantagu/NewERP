@@ -34,7 +34,6 @@ class Student(models.Model):
 
 
 class Enroll(models.Model):
-    objects = None
     enroll = models.AutoField(auto_created=True, serialize=False, primary_key=True)
     ses = models.CharField(max_length=122)
     cname = models.CharField(max_length=122)
@@ -47,7 +46,6 @@ class Enroll(models.Model):
 
 
 class Examination(models.Model):
-    objects = None
     eid = models.AutoField(auto_created=True, serialize=False, primary_key=True)
     cname = models.CharField(max_length=122)
     subject = models.CharField(max_length=122)
@@ -60,7 +58,6 @@ class Examination(models.Model):
 
 
 class Savemarks(models.Model):
-    objects = None
     id = models.AutoField(auto_created=True, serialize=False, primary_key=True)
     rollnumber = models.CharField(max_length=122)
     enrollnumber = models.CharField(max_length=122)
@@ -79,3 +76,12 @@ class Savemarks(models.Model):
 
     def __str__(self):
         return self.studentname
+
+
+class Docs(models.Model):
+    did = models.AutoField(auto_created=True, serialize=False, primary_key=True)
+    name = models.CharField(max_length=122)
+    img = models.CharField(max_length=122)
+    birthdoc = models.CharField(max_length=122)
+    castedoc = models.CharField(max_length=122)
+    marksheetdoc = models.CharField(max_length=122)

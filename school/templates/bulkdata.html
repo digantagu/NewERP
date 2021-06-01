@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Bulk Admission | {% endblock title %}
+
+{% block body %}
+
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Bulk Admission Form</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Bulk Admission</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Enrollment Details</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+
+                                         {% for results in data %}
+
+                                        {{results}}
+
+                                        {% endfor %}
+
+
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="card-footer">
+            <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}
