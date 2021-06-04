@@ -175,7 +175,6 @@ def bulkadmission(request):
             print(sheet.row_values(i, 0))
 
 
-
         return redirect('/bulkdata',{'data':data})
 
         '''
