@@ -23,6 +23,7 @@ urlpatterns = [
                   path('reportcard', views.reportcard, name='reportcard'),
                   path('examwisereport', views.examwisereport, name='examwisereport'),
                   path('bulkadmission', views.bulkadmission, name='bulkadmission'),
-                  path('bulkdata', views.bulkdata, name='bulkdata'),
-
+                  path('employeelist', views.employeelist, name='employeelist'),
+                  path('transferstudent', views.transferstudent, name='transferstudent'),
+                  path('deactivate', views.deactivate, name='deactivate'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
