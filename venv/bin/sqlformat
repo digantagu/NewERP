@@ -1,4 +1,4 @@
-#!/home/diganta/PycharmProjects/NewERP/venv/bin/python
+#!/home/diganta/PycharmProjects/Tenant/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

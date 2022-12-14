@@ -37,12 +37,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <!-- text input -->
-
-                                         {% for results in data %}
-
-                                        {{results}}
-
+                                        {% for results in data %}
+                                        {{results | linebreaks}}
                                         {% endfor %}
                                     </div>
                                 </div>

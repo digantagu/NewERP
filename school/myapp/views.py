@@ -102,6 +102,7 @@ def regstudent(request):
         gender = request.POST.get('gender')
         caste = request.POST.get('caste')
         mail = request.POST.get('mail')
+        blood = request.POST.get('blood')
         dob = request.POST.get('dob')
         school = request.POST.get('school')
         sad = request.POST.get('sad')
@@ -140,8 +141,8 @@ def regstudent(request):
         doc1 = Docs(name=name, img=img, birthdoc=birthdoc, castedoc=castedoc, marksheetdoc=marksheetdoc)
 
         doc1.save()
-
         student1 = Student(name=name, nationality=nationality, mtongue=mtongue, gender=gender, caste=caste, mail=mail,
+                           blood=blood,
                            dob=dob, school=school, sad=sad, qua=qua, father=father, fmail=fmail, phn=phn, job=job,
                            mother=mother, mailid=mailid, phone=phone, occ=occ, house=house, vill=vill,
                            postoffice=postoffice, district=district, state=state, pin=pin,
@@ -174,36 +175,17 @@ def bulkadmission(request):
         for i in range(sheet.nrows):
             print(sheet.row_values(i, 0))
 
+            file1 = open("myfile.txt", "w")
 
-        return redirect('/bulkdata',{'data':data})
+            file1.writelines(str(sheet.row_values(i, 0)))
+            file1.close()
+            file1 = open("myfile.txt", "r", encoding='UTF-8')
+            data.append(file1.read())
+            file1.close()
 
-        '''
-        bulk_adm = BulkStudent()
-
-        dataset = Dataset()
-
-        adm = request.FILES.get('adm')
-
-        fs = FileSystemStorage()
-        fs.save(adm.name, adm)
-        burl = fs.url(adm)
-
-
-        print(adm)
-
-        imported_data = dataset.load(adm.read())
-        result = bulk_adm.import_data(dataset, dry_run=True)  # Test the data import
-
-        if not result.has_errors():
-            bulk_adm.import_data(dataset, dry_run=False)  # Actually import now
-
-        '''
+        return render(request, 'bulkdata.html', {'data': data})
 
     return render(request, 'bulkadmission.html')
-
-@login_required(login_url="/")
-def bulkdata(request):
-    return render(request, 'bulkdata.html')
 
 
 @login_required(login_url="/")
@@ -478,4 +460,45 @@ def examwisereport(request):
 
 @login_required(login_url="/")
 def studentlist(request):
-    return render(request, 'studentlist.html')
+    results = Enroll.objects.all()
+
+    return render(request, 'studentlist.html', {'results': results})
+
+
+@login_required(login_url="/")
+def transferstudent(request):
+    global checklist
+    if request.method == "POST":
+        classname = request.POST.get('cname')
+        sectionname = request.POST.get('section')
+
+        results = Enroll.objects.all()
+
+        var2 = results.filter(cname=classname) & results.filter(section=sectionname)
+        checklist = {'var2': var2}
+
+        return render(request, 'transfer.html', checklist)
+
+    return render(request, 'transferstudent.html')
+
+
+@login_required(login_url="/")
+def deactivate(request):
+    if request.method == "POST":
+        results = Enroll.objects.all()
+        enroll = request.POST.get('enroll')
+        name = request.POST.get('studentname')
+        de = results.filter(name=name) & results.filter(enroll=enroll)
+        if de.exists():
+            de.delete()
+            return render(request, 'deactivate.html')
+
+        else:
+            return redirect('/deactivate')
+
+    return render(request, 'transfer.html', checklist)
+
+
+@login_required(login_url="/")
+def employeelist(request):
+    return render(request, 'employeelist.html')

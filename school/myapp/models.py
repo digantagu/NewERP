@@ -9,6 +9,7 @@ class Student(models.Model):
     gender = models.CharField(max_length=100)
     caste = models.CharField(max_length=100)
     mail = models.EmailField(max_length=122)
+    blood = models.CharField(max_length=100)
     dob = models.DateField()
     school = models.CharField(max_length=122)
     sad = models.CharField(max_length=122)
@@ -84,4 +85,4 @@ class Docs(models.Model):
     img = models.CharField(max_length=122)
     birthdoc = models.CharField(max_length=122)
     castedoc = models.CharField(max_length=122)
-    marksheetdoc = models.CharField(max_length=122)
+    marksheetdoc = models.CharField(max_length=122, blank=True, null=True)

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %} Transfer | {% endblock title %}
+
+{% block body %}
+
+<div class="content-wrapper">
+    <form enctype="multipart/form-data" method="post" action="/deactivate">
+        {% csrf_token %}
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Transfer Form</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">Transfer</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Student Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="enroll" id="enroll">Enrollment ID</label>
+                                    <select name="enroll" class="custom-select form-control-border">
+                                        <option>Select Enroll</option>
+                                        {% for results in var2 %}
+                                        <option>{{results.enroll}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="studentname" id="studentname"> Student Name</label>
+                                    <select name="studentname" class="custom-select form-control-border">
+                                        <option>Select Student</option>
+                                        {% for results in var2 %}
+                                        <option>{{results.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+</div>
+</div>
+</section>
+
+
+</form>
+</div>
+<footer class="main-footer">
+    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
+    All rights reserved.
+
+</footer>
+
+{% endblock body %}
