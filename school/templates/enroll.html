@@ -78,14 +78,16 @@
             </div>
         </section>
         <div class="card-footer">
-            <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit" name="submit" type="submit" class="btn btn-primary" onclick="myAlert()">Submit</button>
         </div>
     </form>
 </div>
-<footer class="main-footer">
-    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
-    All rights reserved.
 
-</footer>
+<script>
+function myAlert() {
+  alert("Successfuly Registered !");
+}
+</script>
 
 {% endblock body %}
+

@@ -8,7 +8,7 @@ class Student(models.Model):
     mtongue = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     caste = models.CharField(max_length=100)
-    mail = models.EmailField(max_length=122)
+    aadhaar = models.CharField(max_length=122, null=True)
     blood = models.CharField(max_length=100)
     dob = models.DateField()
     school = models.CharField(max_length=122)
@@ -19,7 +19,7 @@ class Student(models.Model):
     phn = models.CharField(max_length=122)
     job = models.CharField(max_length=122)
     mother = models.CharField(max_length=122)
-    mailid = models.EmailField(max_length=122)
+    momail = models.EmailField(max_length=122)
     phone = models.CharField(max_length=122)
     occ = models.CharField(max_length=100)
     house = models.CharField(max_length=100)
@@ -86,3 +86,18 @@ class Docs(models.Model):
     birthdoc = models.CharField(max_length=122)
     castedoc = models.CharField(max_length=122)
     marksheetdoc = models.CharField(max_length=122, blank=True, null=True)
+
+
+class Attendance(models.Model):
+    aid = models.AutoField(auto_created=True, serialize=False, primary_key=True)
+    rollnumber = models.CharField(max_length=122)
+    enroll = models.CharField(max_length=122)
+    name = models.CharField(max_length=122)
+    cname = models.CharField(max_length=122)
+    section = models.CharField(max_length=122)
+    status = models.CharField(max_length=122, default="Present")
+    remark = models.CharField(max_length=122)
+    date = models.DateField()
+
+    def __str__(self):
+        return self.name

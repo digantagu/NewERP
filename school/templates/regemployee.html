@@ -306,19 +306,18 @@
             </div><!-- /.container-fluid -->
 
             <div class="card-footer">
-                <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                <button id="submit" name="submit" type="submit" class="btn btn-primary" onclick="myAlert()">Submit</button>
             </div>
         </section>
         <!-- /.content -->
     </form>
 
 </div>
+<script>
+function myAlert() {
+  alert("Successfuly Registered !");
+}
+</script>
 
-<!-- ./wrapper -->
-<footer class="main-footer">
-    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
-    All rights reserved.
-
-</footer>
 
 {% endblock body %}

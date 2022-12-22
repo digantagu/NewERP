@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} View Attendance | {% endblock title %}
+
+{% block body %}
+
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Attendance record from {{fromdate}} to {{todate}}</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/start">Home</a></li>
+                            <li class="breadcrumb-item active">View Attendance Record</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <form method="post">
+        {% csrf_token %}
+        <section class="content">
+
+            <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="two" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Enrollment Number</th>
+                            <th>Roll Number</th>
+                            <th>Class</th>
+                            <th>Section</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Remarks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for i in res %}
+                            <td>{{i.enroll}}</td>
+                            <td>{{i.rollnumber}}</td>
+                            <td>{{i.cname}}</td>
+                            <td>{{i.section}}</td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.status}}</td>
+                            <td>{{i.date}}</td>
+                            <td>{{i.remark}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </section>
+        <div class="card-footer">
+            <button class="btn btn-primary" onclick="window.print()">Print this page</button>
+        </div>
+        </form>        <!-- /.content -->
+    </div>
+</div>
+
+
+    {% endblock body %}

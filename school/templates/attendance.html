@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Transfer | {% endblock title %}
+{% block title %} Attendance | {% endblock title %}
 
 {% block body %}
 
@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Transfer Form</h1>
+                        <h1>Student Attendance for {{date}}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/start">Home</a></li>
-                            <li class="breadcrumb-item active">Transfer</li>
+                            <li class="breadcrumb-item active">Attendance</li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Student Details</h3>
+                                <h3 class="card-title">Filter Class and Section</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">

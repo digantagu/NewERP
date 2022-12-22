@@ -26,4 +26,7 @@ urlpatterns = [
                   path('employeelist', views.employeelist, name='employeelist'),
                   path('transferstudent', views.transferstudent, name='transferstudent'),
                   path('deactivate', views.deactivate, name='deactivate'),
+                  path('attendance', views.attendance, name='attendance'),
+                  path('stdattrecord', views.stdattrecord, name='stdattrecord'),
+                  path('attnreport', views.attnreport, name='attnreport'),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

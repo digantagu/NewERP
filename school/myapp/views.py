@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from datetime import datetime
-from .models import Student, Enroll, Examination, Savemarks, Docs
+from datetime import datetime, date
+from .models import Student, Enroll, Examination, Savemarks, Docs, Attendance
 import xlrd
 from django.core.files.storage import FileSystemStorage
 
@@ -65,7 +65,77 @@ def guardiandir(request):
 
 
 @login_required(login_url="/")
+def attendance(request):
+    global std
+    global rolla
+    date = datetime.today()
+    if request.method == "POST":
+        cname = request.POST.get('cname')
+        section = request.POST.get('section')
+
+        record = Enroll.objects.all()
+        std = record.filter(cname=cname) & record.filter(section=section)
+        rolla = []
+        cal = 1
+        while int(cal) < len(std) + 1:
+            rolla.append(cal)
+            cal = int(cal) + 1
+
+        return render(request, 'studentattrecord.html', {'std': std, 'rolla': rolla})
+
+    return render(request, 'attendance.html', {'date': date})
+
+
+@login_required(login_url="/")
+def attnreport(request):
+    attend = Attendance.objects.all()
+    if request.method == "POST":
+        fromdate = request.POST.get('fromdate')
+        todate = request.POST.get('todate')
+        cname = request.POST.get('cname')
+        section = request.POST.get('section')
+        if request.POST.get('name') == "":
+            res = attend.filter(cname=cname) & attend.filter(section=section) & attend.filter(
+                date__range=[fromdate, todate])
+
+            return render(request, 'viewstudentattendance.html', {"res": res, "fromdate": fromdate, "todate": todate})
+        elif request.POST.get('name') != "":
+            name = request.POST.get('name')
+            res = attend.filter(cname=cname) & attend.filter(section=section) & attend.filter(
+                name=name) & attend.filter(
+                date__range=[fromdate, todate])
+            return render(request, 'viewstudentattendance.html', {"res": res, "fromdate": fromdate, "todate": todate})
+
+    return render(request, 'attnreport.html')
+
+
+@login_required(login_url="/")
+def stdattrecord(request):
+    if request.method == "POST":
+        re = dict(request.POST)['remark']
+        st = dict(request.POST)['status']
+
+        for i in std:
+            rollnumber = rolla.pop(0)
+            enroll = i.enroll
+            name = i.name
+            cname = i.cname
+            section = i.section
+            remark = re.pop(0)
+            status = st.pop(0)
+
+            atten = Attendance(rollnumber=rollnumber, enroll=enroll, name=name, cname=cname, section=section,
+                               remark=remark, status=status, date=datetime.today())
+            atten.save()
+
+            redirect('/stdattrecord')
+
+    return render(request, 'attendance.html')
+
+
+@login_required(login_url="/")
 def examcreate(request):
+    exam = Examination.objects.all()
     if request.method == "POST":
         cname = request.POST.get('cname')
         subject = dict(request.POST)['subject']
@@ -84,7 +154,7 @@ def examcreate(request):
 
         return redirect('/examcreate')
 
-    return render(request, 'examcreate.html')
+    return render(request, 'examcreate.html', {'exam': exam})
 
 
 @login_required(login_url="/")
@@ -101,8 +171,8 @@ def regstudent(request):
         mtongue = request.POST.get('mtongue')
         gender = request.POST.get('gender')
         caste = request.POST.get('caste')
-        mail = request.POST.get('mail')
-        blood = request.POST.get('blood')
+        aadhaar = request.POST.get('aadhaar')
+        blood = request.POST.get('bg')
         dob = request.POST.get('dob')
         school = request.POST.get('school')
         sad = request.POST.get('sad')
@@ -112,7 +182,7 @@ def regstudent(request):
         phn = request.POST.get('phn')
         job = request.POST.get('job')
         mother = request.POST.get('mother')
-        mailid = request.POST.get('momail')
+        momail = request.POST.get('momail')
         phone = request.POST.get('phone')
         occ = request.POST.get('occ')
         house = request.POST.get('hn')
@@ -141,10 +211,9 @@ def regstudent(request):
         doc1 = Docs(name=name, img=img, birthdoc=birthdoc, castedoc=castedoc, marksheetdoc=marksheetdoc)
 
         doc1.save()
-        student1 = Student(name=name, nationality=nationality, mtongue=mtongue, gender=gender, caste=caste, mail=mail,
-                           blood=blood,
+        student1 = Student(name=name, nationality=nationality, mtongue=mtongue, gender=gender, caste=caste, blood=blood,
                            dob=dob, school=school, sad=sad, qua=qua, father=father, fmail=fmail, phn=phn, job=job,
-                           mother=mother, mailid=mailid, phone=phone, occ=occ, house=house, vill=vill,
+                           mother=mother, aadhaar=aadhaar, momail=momail, phone=phone, occ=occ, house=house, vill=vill,
                            postoffice=postoffice, district=district, state=state, pin=pin,
                            date=datetime.today())
 
@@ -154,12 +223,32 @@ def regstudent(request):
 
 
 @login_required(login_url="/")
+def enroll(request):
+    if request.method == "POST":
+        cname = request.POST.get('cname')
+        section = request.POST.get('section')
+        ses = request.POST.get('ses')
+
+        enrolldata = Enroll(cname=cname, section=section, name=name, ses=ses, date=datetime.today())
+
+        student1.save()
+        enrolldata.save()
+        return redirect('/regstudent')
+
+    context = {}
+    context['var'] = name
+    return render(request, 'enroll.html', context)
+
+
+@login_required(login_url="/")
 def bulkadmission(request):
     data = []
     if request.method == "POST":
         cname = request.POST.get('cname')
         section = request.POST.get('section')
         adm = request.FILES.get('adm')
+
+        print(cname, section, adm)
 
         fs = FileSystemStorage()
         fs.save(adm.name, adm)
@@ -189,7 +278,7 @@ def bulkadmission(request):
 
 
 @login_required(login_url="/")
-def enroll(request):
+def bulksave(request):
     if request.method == "POST":
         cname = request.POST.get('cname')
         section = request.POST.get('section')
@@ -199,11 +288,8 @@ def enroll(request):
 
         student1.save()
         enrolldata.save()
-        return redirect('/regstudent')
 
-    context = {}
-    context['var'] = name
-    return render(request, 'enroll.html', context)
+    return redirect('/bulkadmission')
 
 
 @login_required(login_url="/")
@@ -461,7 +547,6 @@ def examwisereport(request):
 @login_required(login_url="/")
 def studentlist(request):
     results = Enroll.objects.all()
-
     return render(request, 'studentlist.html', {'results': results})
 
 

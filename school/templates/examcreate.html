@@ -40,7 +40,7 @@
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label for="ses">Session</label>
-                                            <select name="ses" class="custom-select form-control-border" id="ses">
+                                            <select class="custom-select form-control-border" id="ses" name="ses">
                                                 <option value="">Select</option>
                                                 <option>2021-2022</option>
                                                 <option>2022-2023</option>
@@ -52,7 +52,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="type">Exam Type</label>
-                                            <select name="type" class="custom-select form-control-border" id="type">
+                                            <select class="custom-select form-control-border" id="type" name="type">
                                                 <option value="">Select</option>
                                                 <option>PT I</option>
                                                 <option>TERM I</option>
@@ -65,7 +65,7 @@
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="cname">Class</label>
-                                            <select name="cname" class="custom-select form-control-border" id="cname">
+                                            <select class="custom-select form-control-border" id="cname" name="cname">
                                                 <option value="">Select</option>
                                                 <option value="I">I</option>
                                                 <option value="II">II</option>
@@ -84,7 +84,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Select Subjects</label>
-                                        <select id="subject" name="subject" multiple class="custom-select">
+                                        <select class="custom-select" id="subject" multiple name="subject">
                                             <option value="Assamese">Assamese</option>
                                             <option value="Computer Science">Computer Science</option>
                                             <option value="English_I">English_I</option>
@@ -106,19 +106,30 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
+
+                <div class="card-footer">
+                    <button class="btn btn-primary" id="submit" name="submit" type="submit">Submit</button>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Created Exam list</h3>
+                    </div>
+                    <div class = list>
+                    <ul>
+                        {% for i in exam %}
+                        <li> {{i.exam_id}}</li>
+                        {% endfor %}
+                    </ul></div>
+                </div>
             </div>
         </section>
     </form>
 </div>
-
-<!-- ./wrapper -->
-<footer class="main-footer">
-    <strong>Copyright &copy; 2014-2030 <a href="http://instaitservice.com">InstaITService</a>.</strong>
-    All rights reserved.
-
-</footer>
+<style>
+.list {
+  column-count: 4;
+}
+</style>
 
 {% endblock body %}

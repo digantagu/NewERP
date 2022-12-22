@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Transfer | {% endblock title %}
+{% block title %} Attendance Report| {% endblock title %}
 
 {% block body %}
 
@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Transfer Form</h1>
+                        <h1>Student Attendance Report</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/start">Home</a></li>
-                            <li class="breadcrumb-item active">Transfer</li>
+                            <li class="breadcrumb-item active">Attendance Report</li>
                         </ol>
                     </div>
                 </div>
@@ -32,12 +32,21 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Student Details</h3>
+                                <h3 class="card-title">Filter Attendance Records</h3>
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- text input -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="fromdate">From:&nbsp&nbsp</label>
+                                            <input type="date" id="fromdate" name="fromdate" required>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <label for="todate">To:&nbsp&nbsp</label>
+                                            <input type="date" id="todate" name="todate" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
                                         <label for="cname">Class&nbsp&nbsp&nbsp&nbsp&nbsp</label>
                                         <select id="cname" class="custom-select form-control-border" name="cname">
                                             <option value="">Select</option>
@@ -52,9 +61,8 @@
                                             <option value="IX">IX</option>
                                             <option value="X">X</option>
                                         </select>
-
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="section">Section&nbsp</label>
                                             <select class="custom-select form-control-border" id="section"
@@ -64,6 +72,13 @@
                                                 <option value="B">B</option>
                                                 <option value="C">C</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="name">Enter Name</label>
+                                            <input name="name" type="text" class="form-control" id="name"
+                                                   placeholder="Enter name">
                                         </div>
                                     </div>
                                 </div>
